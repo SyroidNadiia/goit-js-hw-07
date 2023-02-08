@@ -4,7 +4,7 @@ import { galleryItems } from './gallery-items.js';
 const galleryRef = document.querySelector('.gallery');
 const elementGalleryMakeup = createElementGallery(galleryItems);
 
-console.log(createElementGallery(galleryItems));
+// console.log(createElementGallery(galleryItems));
 galleryRef.insertAdjacentHTML('beforeend', elementGalleryMakeup);
 
 
@@ -28,7 +28,15 @@ function createElementGallery(galleryItems) {
 // console.log(markup[1]);
 }
 
-// console.log(galleryItems);
-// 
 
+galleryRef.addEventListener('click', onElementGalleryClick)
 
+function onElementGalleryClick(event) {
+
+  if (!event.target.classList.contains('gallery__image')) {
+    return;
+  }
+
+  console.log(event.target.dataset.source);
+  
+}
