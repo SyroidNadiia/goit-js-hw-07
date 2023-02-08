@@ -4,8 +4,8 @@ import { galleryItems } from './gallery-items.js';
 const galleryRef = document.querySelector('.gallery');
 const elementGalleryMakeup = createElementGallery(galleryItems);
 
-// console.log(createElementGallery(galleryItems));
-galleryRef.insertAdjacentHTML('beforeend', elementGalleryMakeup);
+
+galleryRef.innerHTML = elementGalleryMakeup;
 
 
 function createElementGallery(galleryItems) {
@@ -25,18 +25,26 @@ function createElementGallery(galleryItems) {
     })
     .join('');
 
-// console.log(markup[1]);
 }
 
 
 galleryRef.addEventListener('click', onElementGalleryClick)
 
 function onElementGalleryClick(event) {
+  event.preventDefault();
 
   if (!event.target.classList.contains('gallery__image')) {
     return;
   }
 
-  console.log(event.target.dataset.source);
-  
+  const instance = basicLightbox.create(
+    `<img src="${event.target.dataset.source}" width="800" height="600">`
+    );
+    instance.show();
+
+galleryRef.addEventListener('keydown', (event) => {
+  if (event.code === "Escape") {
+    instance.close();
+  }
+})
 }
