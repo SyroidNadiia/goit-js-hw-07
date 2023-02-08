@@ -43,5 +43,5 @@ function onElementGalleryClick(event) {
     if (event.code === 'Escape') {
       instance.close();
     }
-  });
+  }, {once: true});
 }
