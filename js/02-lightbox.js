@@ -18,18 +18,8 @@ function createElementGallery(galleryItems) {
     .join('');
 }
 
-galleryRef.addEventListener('click', onElementGalleryClick);
-
-function onElementGalleryClick(event) {
-  event.preventDefault();
-
-  if (!event.target.classList.contains('gallery__image')) {
-    return;
-  }
-
   const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionPosition: 'bottom',
     captionDelay: 250,
   });
-}
